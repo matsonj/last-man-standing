@@ -32,6 +32,12 @@ select week, team, entries, odds, entries*odds as predicted_survivors
 from ${pivot}
 ```
 
+```sql upset_picks
+select sum(entries) as upset_picks
+from ${pivot}
+where odds < 0.5
+```
+
 ```sql total_survivors
 select sum(predicted_survivors) as total_predicted_survivors
 from ${predicted_survivors}
@@ -47,6 +53,11 @@ from ${predicted_survivors}
 <BigValue 
   data={total_survivors} 
   value=total_predicted_survivors
+/>
+
+<BigValue 
+  data={upset_picks} 
+  value=upset_picks
 />
 
 # Picks by Team
@@ -73,5 +84,7 @@ from ${predicted_survivors}
 	<Column id=spread/> 
 	<Column id=ML title=ML/> 
 	<Column id=odds title='De-vigged Odds' fmt=pct1/> 
-  <Column id=entries/> 
+  <Column id=entries title='Picks'/> 
 </DataTable>
+
+_NFL game lines sourced from https://www.vegasinsider.com/nfl_
