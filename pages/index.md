@@ -70,9 +70,9 @@ from ${predicted_survivors}
     series=chart_series
     colorPalette={
         [
+	'#FF8F8F',
         '#EEEEEE',
-        '#9ADE7B',
-        '#FF8F8F'
+        '#9ADE7B'
         ]
     }
 />
