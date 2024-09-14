@@ -15,7 +15,7 @@ select
   odds.ML,
   odds.spread
 from survivor_picks.picks
-left join survivor_picks.odds on CONCAT('WEEK ',odds.week) = picks.week and UPPER(odds.team) = UPPER(picks.team)
+left join survivor_picks.odds on CONCAT('WEEK ',odds.week::int) = picks.week and UPPER(odds.team) = UPPER(picks.team)
 left join survivor_picks.results on odds.week = results.week and UPPER(odds.team) = UPPER(results.team)
 group by all
 order by chart_series, entries desc
