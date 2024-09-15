@@ -9,7 +9,7 @@ select
   count(picks.*) as entries,
   odds.odds,
   CASE WHEN results.result = 'win' THEN 'survived' 
-    WHEN results.result = 'loss' THEN 'eliminated'
+    WHEN results.result = 'loss' OR picks.team = 'NO PICK' THEN 'eliminated'
     ELSE 'tbd' END
   AS chart_series,
   odds.ML,
@@ -70,9 +70,9 @@ from ${predicted_survivors}
     series=chart_series
     colorPalette={
         [
-	'#FF8F8F',
-        '#EEEEEE',
-        '#9ADE7B'
+	      '#FF8F8F',
+        '#9ADE7B',
+        '#EEEEEE'
         ]
     }
 />
